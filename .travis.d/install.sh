@@ -37,7 +37,13 @@ echo "${TT_SWIFT_BINARY}"
 
 # Install mod_swift
 
-wget "${MOD_SWIFT}"
-ls -la
+wget "${MOD_SWIFT}" -O mod_swift.tar.gz
+tar zxf mod_swift.tar.gz
+cd mod_swift-*
+make all
+make install
 
 swift apache validate
+
+
+cd $HOME
