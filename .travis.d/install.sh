@@ -39,3 +39,5 @@ echo "${TT_SWIFT_BINARY}"
 
 wget "${MOD_SWIFT}"
 ls -la
+
+swift apache validate

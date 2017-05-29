@@ -15,9 +15,10 @@ if [[ "$TRAVIS_OS_NAME" == "Linux" ]]; then
        \
        pkg-config libapr1-dev libaprutil1-dev \
        libxml2 apache2 apache2-dev \
-       libnghttp2-dev \
        libaprutil1-dbd-sqlite3 \
        libaprutil1-dbd-pgsql
+
+    # Not available on Trusty: libnghttp2-dev
 
     sudo update-alternatives --quiet --install /usr/bin/clang clang /usr/bin/clang-3.6 100
     sudo update-alternatives --quiet --install /usr/bin/clang++ clang++ /usr/bin/clang++-3.6 100
