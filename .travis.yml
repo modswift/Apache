@@ -24,4 +24,4 @@ install:
 
 script:
     - export PATH="$HOME/usr/bin:$PATH"
-    - make all
+    - swift build

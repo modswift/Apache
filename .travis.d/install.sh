@@ -1,49 +1,55 @@
 #!/bin/bash
 
-# our path is:
-#   /home/travis/build/NozeIO/Noze.io/
+if [[ "$TRAVIS_OS_NAME" == "Linux" ]]; then
 
-# Install Swift
+  # our path is:
+  #   /home/travis/build/NozeIO/Noze.io/
 
-wget "${SWIFT_SNAPSHOT_NAME}"
+  # Install Swift
 
-TARBALL="`ls swift-*.tar.gz`"
-echo "Tarball: $TARBALL"
+  wget "${SWIFT_SNAPSHOT_NAME}"
 
-TARPATH="$PWD/$TARBALL"
+  TARBALL="`ls swift-*.tar.gz`"
+  echo "Tarball: $TARBALL"
 
-cd $HOME # expand Swift tarball in $HOME
-tar zx --strip 1 --file=$TARPATH
-pwd
+  TARPATH="$PWD/$TARBALL"
 
-export PATH="$PWD/usr/bin:$PATH"
-which swift
+  cd $HOME # expand Swift tarball in $HOME
+  tar zx --strip 1 --file=$TARPATH
+  pwd
 
-if [ `which swift` ]; then
-    echo "Installed Swift: `which swift`"
-else
-    echo "Failed to install Swift?"
-    exit 42
+  export PATH="$PWD/usr/bin:$PATH"
+  which swift
+
+  if [ `which swift` ]; then
+      echo "Installed Swift: `which swift`"
+  else
+      echo "Failed to install Swift?"
+      exit 42
+  fi
+  swift --version
+
+
+  # Environment
+
+  TT_SWIFT_BINARY=`which swift`
+
+  echo "${TT_SWIFT_BINARY}"
+
+
+  # Install mod_swift
+
+  wget "${MOD_SWIFT}" -O mod_swift.tar.gz
+  tar zxf mod_swift.tar.gz
+  cd mod_swift-*
+  make all
+  sudo make install
+
+  swift apache validate
+
+
+  # Go back somewhere
+
+  cd $HOME
+
 fi
-swift --version
-
-
-# Environment
-
-TT_SWIFT_BINARY=`which swift`
-
-echo "${TT_SWIFT_BINARY}"
-
-
-# Install mod_swift
-
-wget "${MOD_SWIFT}" -O mod_swift.tar.gz
-tar zxf mod_swift.tar.gz
-cd mod_swift-*
-make all
-make install
-
-swift apache validate
-
-
-cd $HOME
