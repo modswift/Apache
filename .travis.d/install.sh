@@ -33,3 +33,9 @@ swift --version
 TT_SWIFT_BINARY=`which swift`
 
 echo "${TT_SWIFT_BINARY}"
+
+
+# Install mod_swift
+
+wget "${MOD_SWIFT}"
+ls -la
