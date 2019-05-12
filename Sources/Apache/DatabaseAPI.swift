@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2017 ZeeZide GmbH, All Rights Reserved
+// Copyright (C) 2017-2019 ZeeZide GmbH, All Rights Reserved
 // Created by Helge Hess on 23/01/2017.
 //
 
@@ -24,7 +24,7 @@ public extension ApacheRequest {
   fileprivate typealias aprz_OFN_ap_dbd_acquire_t = @convention(c)
     ( UnsafeMutableRawPointer? ) -> UnsafeMutablePointer<ap_dbd_t>?
   
-  public func dbdAcquire(pool: OpaquePointer? = nil) -> DBDConnectionType? {
+  func dbdAcquire(pool: OpaquePointer? = nil) -> DBDConnectionType? {
     let ap_dbd_acquire : aprz_OFN_ap_dbd_acquire_t? =
                            APR_RETRIEVE_OPTIONAL_FN("ap_dbd_acquire")
     if ap_dbd_acquire == nil {
