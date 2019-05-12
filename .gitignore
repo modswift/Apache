@@ -85,4 +85,5 @@ Release
 /Packages
 httpd.pid
 .httpd.pid
+*.resolved
 
