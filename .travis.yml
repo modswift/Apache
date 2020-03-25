@@ -13,8 +13,14 @@ matrix:
           dist: trusty
           env:  MOD_SWIFT="https://github.com/modswift/mod_swift/archive/0.8.11.tar.gz" SWIFT_SNAPSHOT_NAME="https://swift.org/builds/swift-5.0-release/ubuntu1404/swift-5.0-RELEASE/swift-5.0-RELEASE-ubuntu14.04.tar.gz"
           sudo: required
+        - os:   Linux
+          dist: xenial
+          env:  MOD_SWIFT="https://github.com/modswift/mod_swift/archive/0.8.11.tar.gz" SWIFT_SNAPSHOT_NAME="https://swift.org/builds/swift-5.2-release/ubuntu1604/swift-5.2-RELEASE/swift-5.2-RELEASE-ubuntu16.04.tar.gz"
+          sudo: required
         - os:   osx
           osx_image: xcode10.2
+        - os:   osx
+          osx_image: xcode11
 
 before_install:
     - ./.travis.d/before-install.sh
